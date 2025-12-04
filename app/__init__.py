@@ -1,11 +1,18 @@
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+import os
+
+db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
-    # 설정 예: app.config['SECRET_KEY'] = 'your-secret-key'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///restaurants.db'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+    db.init_app(app)
 
     @app.route('/')
     def home():
-        return "Hello, Local 맛집 프로젝트!"
+        return "DB 연결 테스트 완료!"
 
     return app
