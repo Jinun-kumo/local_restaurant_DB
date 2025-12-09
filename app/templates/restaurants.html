@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>맛집 목록</title>
+</head>
+<body>
+    <h1>🍽 맛집 목록</h1>
+    <ul>
+        {% for r in restaurants %}
+        <li>{{ r.name }} - {{ r.category }}<br>{{ r.address }} / {{ r.phone }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
