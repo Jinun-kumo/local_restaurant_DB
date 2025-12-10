@@ -2,14 +2,54 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>맛집 목록</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f5f5; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        h1 { color: #333; margin-bottom: 30px; }
+        .restaurant-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .restaurant-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            color: inherit;
+        }
+        .restaurant-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+        .restaurant-name { font-size: 1.3em; font-weight: bold; color: #333; margin-bottom: 10px; }
+        .restaurant-category { display: inline-block; background: #ff6b6b; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-bottom: 10px; }
+        .restaurant-info { font-size: 0.9em; color: #666; line-height: 1.6; }
+        .restaurant-address::before { content: "📍 "; }
+        .restaurant-phone::before { content: "📞 "; }
+    </style>
 </head>
 <body>
-    <h1>🍽 맛집 목록</h1>
-    <ul>
-        {% for r in restaurants %}
-        <li>{{ r.name }} - {{ r.category }}<br>{{ r.address }} / {{ r.phone }}</li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <h1>🍽 맛집 목록</h1>
+        {% if restaurants %}
+        <div class="restaurant-list">
+            {% for r in restaurants %}
+            <a href="{{ url_for('main.restaurant_detail', restaurant_id=r.id) }}" class="restaurant-card">
+                <div class="restaurant-name">{{ r.name }}</div>
+                <div class="restaurant-category">{{ r.category }}</div>
+                <div class="restaurant-info">
+                    <div class="restaurant-address">{{ r.address }}</div>
+                    <div class="restaurant-phone">{{ r.phone }}</div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>등록된 맛집이 없습니다.</p>
+        {% endif %}
+    </div>
 </body>
 </html>
