@@ -5,20 +5,21 @@ import os
 db = SQLAlchemy()
 
 def create_app():
-    app = Flask(__name__, instance_relative_config=True)
+    app = Flask(__name__)
+    app.config['SECRET_KEY'] = 'dev-key'
 
-    # Instance 폴더 생성
     os.makedirs(app.instance_path, exist_ok=True)
-
-    # DB 파일 경로 설정
     db_path = os.path.join(app.instance_path, 'restaurants.db')
-    app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{db_path}"
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/kumo_cloud/local_restaurant_DB/instance/restaurants.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+    print("🔥 Flask DB PATH:", app.config['SQLALCHEMY_DATABASE_URI'])
+
 
     db.init_app(app)
 
-    # 라우트 추가
-    from . import routes
+    from app import routes
     app.register_blueprint(routes.bp)
 
     return app
