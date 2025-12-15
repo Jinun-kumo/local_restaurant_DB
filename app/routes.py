@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from app import db
-from app.models import Restaurant, Review
+from app.models import Restaurant
 
 bp = Blueprint('main', __name__)
 
@@ -21,17 +21,6 @@ def restaurant_detail(restaurant_id):
 
 @bp.route('/restaurant/<int:restaurant_id>/review', methods=['POST'])
 def add_review(restaurant_id):
-    rating = request.form['rating']
-    comment = request.form['comment']
-
-    review = Review(
-        restaurant_id=restaurant_id,
-        rating=rating,
-        comment=comment
-    )
-
-    db.session.add(review)
-    db.session.commit()
-
-    # ⭐ 핵심: POST 후 무조건 redirect
+    # 🔒 리뷰 기능은 사용자 인증 구현 후 활성화
     return redirect(url_for('main.restaurant_detail', restaurant_id=restaurant_id))
+
