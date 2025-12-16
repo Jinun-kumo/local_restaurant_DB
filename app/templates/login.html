@@ -1,32 +1,29 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>로그인</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}로그인{% endblock %}
 
-<h1>로그인</h1>
+{% block content %}
+<div class="auth-card">
+    <h2>로그인</h2>
 
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-<ul>
-{% for message in messages %}
-<li>{{ message }}</li>
-{% endfor %}
-</ul>
-{% endif %}
-{% endwith %}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class="flash">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
 
-<form method="post">
-    <input type="text" name="username" placeholder="아이디" required>
-    <br><br>
-    <input type="password" name="password" placeholder="비밀번호" required>
-    <br><br>
-    <button type="submit">로그인</button>
-</form>
+    <form method="post">
+        <input type="text" name="username" placeholder="아이디" required>
+        <input type="password" name="password" placeholder="비밀번호" required>
+        <button type="submit">로그인</button>
+    </form>
 
-<p><a href="/register">회원가입</a></p>
-
-</body>
-</html>
+    <p class="auth-link">
+        아직 계정이 없으신가요?
+        <a href="{{ url_for('main.register') }}">회원가입</a>
+    </p>
+</div>
+{% endblock %}

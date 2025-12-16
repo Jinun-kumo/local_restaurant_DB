@@ -1,49 +1,41 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ restaurant.name }}</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}{{ restaurant.name }}{% endblock %}
 
-<h1>{{ restaurant.name }}</h1>
+{% block content %}
+<h2>{{ restaurant.name }}</h2>
+
 <p>{{ restaurant.address }}</p>
 <p>{{ restaurant.phone }}</p>
 <p>{{ restaurant.category }}</p>
 
 {% if avg_rating %}
-<p>⭐ 평균 평점: {{ avg_rating }}</p>
+<p class="rating">⭐ 평균 평점: {{ avg_rating }}</p>
 {% endif %}
 
 <hr>
 
-<h2>리뷰 작성</h2>
+<h3>리뷰 작성</h3>
 
 {% if session.user_id %}
 <form method="post" action="/restaurant/{{ restaurant.id }}/review">
     <input type="number" name="rating" min="1" max="5" required>
-    <br><br>
     <textarea name="comment" required></textarea>
-    <br><br>
-    <button type="submit">등록</button>
+    <button>등록</button>
 </form>
 {% else %}
-<p><a href="/login">로그인</a> 후 리뷰 작성 가능</p>
+<p>리뷰 작성은 <a href="/login">로그인</a> 후 가능합니다.</p>
 {% endif %}
 
 <hr>
 
-<h2>리뷰 목록</h2>
+<h3>리뷰 목록</h3>
 {% for review in restaurant.reviews %}
-<p>
-    ⭐ {{ review.rating }} |
-    {{ review.user.username }}<br>
-    {{ review.comment }}
-</p>
-<hr>
+<div class="review">
+    <strong>{{ review.user.username }}</strong>
+    ⭐ {{ review.rating }}
+    <p>{{ review.comment }}</p>
+</div>
 {% else %}
 <p>아직 리뷰가 없습니다.</p>
 {% endfor %}
-
-</body>
-</html>
+{% endblock %}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}광주 맛집{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="header">
+    <h1><a href="{{ url_for('main.index') }}">🍽 광주 맛집</a></h1>
+
+    <nav>
+        {% if session.user_id %}
+            <a href="{{ url_for('main.logout') }}">로그아웃</a>
+        {% else %}
+            <a href="{{ url_for('main.login') }}">로그인</a>
+            <a href="{{ url_for('main.register') }}">회원가입</a>
+        {% endif %}
+    </nav>
+</header>
+
+<main class="container">
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+    <p>DB Project © 2025</p>
+</footer>
+
+</body>
+</html>

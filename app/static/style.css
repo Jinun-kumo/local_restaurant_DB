@@ -1,0 +1,225 @@
+/* =========================
+   Global
+========================= */
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f5f5;
+    color: #333;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* =========================
+   Header
+========================= */
+
+.header {
+    background: #222;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 1.4rem;
+}
+
+.header nav a {
+    margin-left: 15px;
+    color: white;
+    font-size: 0.95rem;
+}
+
+.header nav a:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   Layout
+========================= */
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 10px;
+}
+
+/* =========================
+   Restaurant List
+========================= */
+
+.restaurant-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.card p {
+    margin: 4px 0;
+    font-size: 0.9rem;
+}
+
+/* =========================
+   Rating
+========================= */
+
+.rating {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* =========================
+   Restaurant Detail
+========================= */
+
+hr {
+    margin: 25px 0;
+    border: none;
+    border-top: 1px solid #ddd;
+}
+
+textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 8px;
+    resize: vertical;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+input[type="number"] {
+    width: 80px;
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+button {
+    margin-top: 10px;
+    padding: 8px 14px;
+    background: #222;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #444;
+}
+
+/* =========================
+   Review
+========================= */
+
+.review {
+    background: white;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.review strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* =========================
+   Auth (Login / Register)
+========================= */
+
+.auth-card {
+    background: white;
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.auth-card h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.auth-card form {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-card input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.auth-card button {
+    padding: 10px;
+    background: #222;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.auth-card button:hover {
+    background: #444;
+}
+
+.auth-link {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
+
+/* =========================
+   Flash Messages
+========================= */
+
+.flash {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 15px;
+    color: red;
+    text-align: center;
+}
+
+/* =========================
+   Footer
+========================= */
+
+.footer {
+    margin-top: 60px;
+    padding: 15px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #777;
+}
